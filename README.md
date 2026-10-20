@@ -77,12 +77,14 @@ Check items off as they get done. Each phase should leave the project in a runna
 
 ### Phase 0: Setup
 
+Completed: 10/20/2026
+
 - [x] Create Godot 4 project and commit base structure
 - [x] Add `.gitignore` (Godot + C++ build artifacts) and `.gitattributes`
 - [x] Pick license and add `LICENSE`
 - [x] Set up folder layout (scenes, scripts, docs)
 - [x] Add godot-cpp as a submodule and confirm an empty GDExtension loads
-- [ ] Decide fixed grid size and tile size (document in `docs/`)
+- [x] Decide fixed grid size and tile size (document in `docs/`)
 
 ### Phase 1: Grid and Sandbox
 
