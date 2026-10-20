@@ -76,11 +76,11 @@ C++ extension build instructions will be added in Phase 6.
 Check items off as they get done. Each phase should leave the project in a runnable state.
 
 ### Phase 0: Setup
-- [ ] Create Godot 4 project and commit base structure
-- [ ] Add `.gitignore` (Godot + C++ build artifacts) and `.gitattributes`
+- [X] Create Godot 4 project and commit base structure
+- [X] Add `.gitignore` (Godot + C++ build artifacts) and `.gitattributes`
 - [ ] Pick license and add `LICENSE`
-- [ ] Set up folder layout (scenes, scripts, docs)
-- [ ] Add godot-cpp as a submodule and confirm an empty GDExtension loads
+- [X] Set up folder layout (scenes, scripts, docs)
+- [X] Add godot-cpp as a submodule and confirm an empty GDExtension loads
 - [ ] Decide fixed grid size and tile size (document in `docs/`)
 
 ### Phase 1: Grid and Sandbox
