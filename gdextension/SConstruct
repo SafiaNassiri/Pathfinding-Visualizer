@@ -1,0 +1,21 @@
+#!/usr/bin/env python
+import os
+import sys
+
+# Load godot-cpp environment
+env = SConscript("godot-cpp/SConstruct")
+
+# Add include paths
+env.Append(CPPPATH=["src/"])
+
+# Collect C++ sources
+sources = Glob("src/*.cpp")
+
+# Output directory and base name
+# Note: ${SHLIBSUFFIX} ensures SCons resolves .dll on Windows cleanly
+lib_basename = "libpathfinding"
+target_path = f"bin/{lib_basename}.{env['platform']}.{env['target']}.{env['arch']}{env['SHLIBSUFFIX']}"
+
+# Build library
+library = env.SharedLibrary(target=target_path, source=sources)
+Default(library)
