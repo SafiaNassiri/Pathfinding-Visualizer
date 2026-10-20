@@ -177,9 +177,9 @@ Metrics: average frame time (ms), avg path computation (ms), nodes expanded.
 
 ## Notes and References
 
-- Hierarchical Pathfinding A* (HPA*), Botea et al.
-- Amit Patel's Red Blob Games: A* and grid pathfinding
-- Godot docs: GDExtension, `AStarGrid2D`, Y-sort
+- [Hierarchical Pathfinding A* (HPA*), Botea et al.](https://www.researchgate.net/publication/228785110_Near_optimal_hierarchical_path-finding_HPA)
+- [Amit Patel's Red Blob Games: A* and grid pathfinding](https://www.redblobgames.com/pathfinding/a-star/introduction.html)
+- Godot docs: [GDExtension](https://docs.godotengine.org/en/4.4/tutorials/scripting/gdextension/what_is_gdextension.html), [`AStarGrid2D`](https://docs.godotengine.org/en/stable/classes/class_astargrid2d.html)
 
 ## License
 
