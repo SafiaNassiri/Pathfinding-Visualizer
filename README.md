@@ -88,13 +88,15 @@ Completed: 10/20/2026
 
 ### Phase 1: Grid and Sandbox
 
-- [ ] Grid data structure (walkable/blocked, cost per cell)
-- [ ] Grid rendering (TileMap or custom draw)
-- [ ] Camera pan and zoom
-- [ ] Click-and-drag obstacle placement and erasing
-- [ ] Start/goal placement
-- [ ] Save/load maps (JSON or Resource)
-- [ ] Random obstacle generator for stress tests
+completed: 10/28/2026
+
+- [x] Grid data structure (walkable/blocked, cost per cell)
+- [x] Grid rendering (TileMap or custom draw)
+- [x] Camera pan and zoom
+- [x] Click-and-drag obstacle placement and erasing
+- [x] Start/goal placement
+- [x] Save/load maps (JSON or Resource)
+- [x] Random obstacle generator for stress tests
 
 ### Phase 2: Baseline A\* (single agent, GDScript)
 

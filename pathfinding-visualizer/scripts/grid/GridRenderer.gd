@@ -14,10 +14,8 @@ const LINES_MIN_ZOOM := 0.05
 
 var _image: Image
 var _texture: ImageTexture
-var _texture_dirty := false
 var _palette := PackedColorArray()
 var _last_xf := Transform2D()
-
 
 func _ready() -> void:
 	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
@@ -27,11 +25,9 @@ func _ready() -> void:
 		grid = GridData.new()
 	setup(grid)
 
-
 func setup(p_grid: GridData) -> void:
 	grid = p_grid
 	_image = Image.create_empty(Config.GRID_W, Config.GRID_H, false, Image.FORMAT_RGBA8)
-	_texture = ImageTexture.create_from_image(_image)
 	
 	if not grid.cell_changed.is_connected(_on_cell_changed):
 		grid.cell_changed.connect(_on_cell_changed)
@@ -44,32 +40,34 @@ func setup(p_grid: GridData) -> void:
 func redraw_all() -> void:
 	if grid == null or _image == null:
 		return
-	for y in Config.GRID_H:
-		for x in Config.GRID_W:
-			_image.set_pixel(x, y, _palette[grid.get_cost(x, y)])
-	_texture_dirty = true
 
+	# Make sure the palette exists before accessing its colors.
+	if _palette.size() < 256:
+		_build_palette()
+
+	for y in range(Config.GRID_H):
+		for x in range(Config.GRID_W):
+			var cost: int = grid.get_cost(x, y)
+			cost = clampi(cost, 0, _palette.size() - 1)
+			_image.set_pixel(x, y, _palette[cost])
+
+	_texture = ImageTexture.create_from_image(_image)
+	queue_redraw()
 
 func _on_cell_changed(x: int, y: int) -> void:
-	if _image == null:
+	if _image == null or grid == null:
 		return
 	_image.set_pixel(x, y, _palette[grid.get_cost(x, y)])
-	_texture_dirty = true
-
+	
+	# Recreate texture immediately so single edits appear instantly
+	_texture = ImageTexture.create_from_image(_image)
+	queue_redraw()
 
 func _process(_delta: float) -> void:
-	if grid == null or _texture == null:
-		return
-	if _texture_dirty:
-		_texture.update(_image)
-		_texture_dirty = false
-		queue_redraw()
-		
 	var xf := get_global_transform_with_canvas()
 	if xf != _last_xf:
 		_last_xf = xf
 		queue_redraw()
-
 
 func _draw() -> void:
 	if _texture == null:
@@ -79,12 +77,10 @@ func _draw() -> void:
 	if show_grid_lines:
 		_draw_grid_lines()
 
-
 var show_grid_lines := true:
 	set(value):
 		show_grid_lines = value
 		queue_redraw()
-
 
 func _draw_grid_lines() -> void:
 	var xf := get_global_transform_with_canvas()
@@ -105,7 +101,6 @@ func _draw_grid_lines() -> void:
 		pts.append(Vector2(x0 * t, y * t))
 		pts.append(Vector2(x1 * t, y * t))
 	draw_multiline(pts, COLOR_LINES, -1.0)
-
 
 func _build_palette() -> void:
 	_palette.resize(256)
