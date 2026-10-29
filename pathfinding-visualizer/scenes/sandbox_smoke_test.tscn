@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://ct17kxp6k0n4f"]
+
+[ext_resource type="Script" uid="uid://da0xij7warlp2" path="res://scripts/grid/GridRenderer.gd" id="1_5jp7j"]
+[ext_resource type="Script" uid="uid://bmlgt33jykscv" path="res://scripts/grid/CameraController.gd" id="2_mkx21"]
+[ext_resource type="Script" uid="uid://c2w3mm85uy4aj" path="res://scripts/grid/SandboxController.gd" id="3_3trus"]
+
+[node name="Main" type="Node2D" unique_id=744318419]
+script = ExtResource("1_5jp7j")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=112870597]
+position = Vector2(2048, 2048)
+zoom = Vector2(0.25, 0.25)
+script = ExtResource("2_mkx21")
+
+[node name="GridRenderer" type="Node2D" parent="." unique_id=61666964]
+
+[node name="SandboxController" type="Node2D" parent="." unique_id=198910264]
+script = ExtResource("3_3trus")
